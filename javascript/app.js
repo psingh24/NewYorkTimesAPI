@@ -1,44 +1,78 @@
   $(document).ready(function(){
 
-             $("searchButton").on("click", function() {
+// var searchFor = ""
 
-                //var searchString = $("searchString");
-                var searchString = "clinton";
-                var begin_date = "20160512";
-                //var begin_date = "2016";
-                var end_date = "20170513";
-                //var end_date = "2017";
-                var APIKey = "0a6e80cbee064803a7aed32dceb2845b";
+// var searchFor = $("#searchTerm").val().trim();
+// var startDate = $("#startYear").val().trim();
+// var endDate = $("#endYear").val().trim();
 
-                //API QUERY - https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=0a6e80cbee064803a7aed32dceb2845b&q=clinton&begin_date=20160512&end_date=20170513
 
-                var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
-                url += '?' + $.param({
-                'api-key': APIKey,
-                'q': searchString,
-                  'begin_date': begin_date,
-                  'end_date': end_date,
-                  });
 
-                console.log(url);
 
-                $.ajax({
-                  url: url,
-                  method: 'GET',
-                }).done(function(result) {
-                  console.log(result);
-                  //get the number of records to be displayed
-                  var numRecords = $("numRecords");
-                  //loop through the response till the # of records
-                  for(var i=0; i<results[numRecords]; i++){
-                      var resultDiv = $("<div>");
-                      
-                      = result.docs.headline.print_headline
-                  //}    
-                }).fail(function(err) {
-                  throw err;
-                });
 
-             });
+$("#run-search").on("click", function() {
 
-         });
+
+
+var searchFor = $("#searchTerm").val().trim();
+var startDate = $("#startYear").val().trim();
+var endDate = $("#endYear").val().trim();
+
+
+var newUrl = urlBase+ "&q=" + searchFor
+
+console.log(newUrl)
+
+
+
+apiCall(urlBase+ "&q=" + searchFor)
+
+return false;
+
+ 
+// var url = data.response.docs[0].web_url;
+// $("#headline").html(headline);
+// $("#author").html(author);
+// // $("#date").html(pubDate);
+// $("#link").html(url);
+
+
+
+
+});
+
+
+var urlBase = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=0a6e80cbee064803a7aed32dceb2845b"
+
+
+var query = "&q=kobe"
+
+// var dates = "&begin_date=20160512&end_date=20170513"
+
+
+function apiCall(url) {
+
+$.ajax({
+  url: url,
+  method: "GET"
+}).done(function(data){
+  console.log(data)
+        var headline = data.response.docs[0].headline.main;
+        // var author = data.response.docs[0].byline.original;
+        var pubDate = data.response.docs[0].pub_date;
+         var articleUrl = data.response.docs[0].web_url;
+                 
+
+                  $("#headline").html(headline);
+                  // $("#author").html(author);
+                  $("#date").html(pubDate);
+                  $("#link").html(articleUrl);
+})
+
+}
+
+// apiCall();
+
+
+
+});

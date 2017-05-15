@@ -3,8 +3,6 @@
 <head>
 	<title></title>
 
-
-
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
 
@@ -14,7 +12,7 @@
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
         crossorigin="anonymous"></script>
 
-        
+        <link rel="stylesheet" href="css/style.css">
 	<script type="text/javascript" src="javascript/app.js"></script>
 </head>
 <body>
@@ -31,6 +29,7 @@
 </div>
 
 
+
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
@@ -43,7 +42,7 @@
 						<form>
 					  <div class="form-group">
 					    <label>Search Term</label>
-					    <input type="text" class="form-control" id="searchTerm" placeholder="search">
+					    <input type="text" class="form-control" id="searchTerm">
 					  </div>
 					  <div class="form-group">
 					    <label for="exampleInputPassword1">Number of Records to Retrive</label>
@@ -61,8 +60,8 @@
 					  </div>
 					  
 		
-					  <button type="submit" class="btn btn-default"><p class="glyphicon glyphicon-search"></p>Submit</button>
-					 <button type="" class="btn btn-default"><p class="glyphicon glyphicon-trash"></p>Clear Results</button>
+					  <button type="submit" class="btn btn-default" id="run-search">Search</button>
+					 <button type="button" id="clear" class="btn btn-default"><p class="glyphicon glyphicon-trash"></p>Clear Results</button>
 					</form>
 					</div>
 
@@ -78,7 +77,15 @@
 		               <h3 class="panel-title"><p class="glyphicon glyphicon-list-alt"></p>Top Articles</h3>
 		             </div>
 
-		             <div class="panel-body" id="articles">Panel content</div>
+		             <div class="panel-body">
+						<div class="well">
+						 <h3 id="headline">Headline</h3>
+						 <h5 id="author">Author</h5>
+						 <p id="section">Section</p>
+						 <p id="date">Date</p>
+						 <a id="link" href="" target="_blank">link</a> 
+						 </div>
+					 </div>
         			</div>
 				
 			</div>
